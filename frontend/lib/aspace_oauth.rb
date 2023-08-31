@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module AspaceOauth
-  def self.build_url(host, path, params = {})
+  def self.build_url(host, path, query = {})
     URI::HTTPS.build(
       host: URI(host).host,
       path: path,
-      query: URI.encode_www_form(params)
+      query: query.is_a?(Hash) ? URI.encode_www_form(query) : query
     ).to_s
   end
 
@@ -53,5 +53,13 @@ module AspaceOauth
 
   def self.username_is_email?
     AppConfig.has_key?(:oauth_username_is_email) && AppConfig[:oauth_username_is_email] == true
+  end
+
+  def self.openid_connect_logout_url
+    config = get_oauth_config_for('openid_connect')
+    return unless config
+
+    uri = URI(config[:config][:client_options][:end_session_endpoint])
+    build_url(uri.to_s, uri.path, uri.query)
   end
 end
