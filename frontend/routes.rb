@@ -13,5 +13,6 @@ ArchivesSpace::Application.routes.draw do
     get  '/auth/failure',            to: 'oauth#failure'
     get  '/auth/cas_logout',         to: 'oauth#cas_logout'
     get  '/auth/saml_logout',        to: 'oauth#saml_logout'
+    get  '/auth/openid_connect_logout', to: 'oauth#openid_connect_logout'
   end
 end
