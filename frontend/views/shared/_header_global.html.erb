@@ -24,15 +24,3 @@
     </div>
   </nav>
 </div>
-<!-- PLUGIN BEGIN -->
-<% if session[:user] %>
-  <% AppConfig[:oauth_definitions].find_all{ |od| od[:slo_link] }.each do |oauth_definition| %>
-    <script type="text/javascript">
-        (function() {
-            var logout = $('a[href~="<%= AppConfig[:frontend_proxy_prefix] %>logout"]').parent().parent();
-            logout.append('<li><%= link_to("#{oauth_definition[:provider].upcase} Logout", "#{AppConfig[:frontend_proxy_prefix]}auth/#{oauth_definition[:provider]}_logout") %></li>');
-        })();
-    </script>
-  <% end %>
-<% end %>
-<!-- PLUGIN END -->
