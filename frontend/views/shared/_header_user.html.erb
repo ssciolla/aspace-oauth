@@ -89,7 +89,7 @@
           <% end %>
           <li><%= link_to(I18n.t('user._frontend.action.update_self'), {:controller => :users, :action => :edit_self}) %></li>
           <!-- PLUGIN BEGIN -->
-          <% AppConfig[:oauth_definitions].find_all{ |od| od[:slo_link] }.each do |oauth_definition| %>
+          <% AppConfig[:oauth_definitions].each do |oauth_definition| %>
             <li><%= link_to I18n.t("navbar.logout"), "#{AppConfig[:frontend_proxy_prefix]}auth/#{oauth_definition[:provider]}_logout" %></li>
           <% end %>
           <!-- PLUGIN END -->
