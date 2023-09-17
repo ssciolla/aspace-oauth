@@ -28,7 +28,7 @@ class ASOauth
     info = JSON.parse(File.read(pw_path))['info']
     return nil unless username == info['username'].downcase
 
-    JSONModel(:user).from_hash(
+    user_hash = {
       username: username,
       name: info['name'],
       email: info['email'],
@@ -36,7 +36,11 @@ class ASOauth
       last_name: info['last_name'],
       telephone: info['phone'],
       additional_contact: info['description']
-    )
+    }
+    p user_hash
+
+    result = JSONModel(:user).from_hash(user_hash)
+    p result
   end
 
   def matching_usernames(query)
