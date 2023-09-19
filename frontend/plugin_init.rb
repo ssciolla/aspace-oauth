@@ -15,6 +15,21 @@ ArchivesSpace::Application.extend_aspace_routes(
 )
 require 'omniauth'
 
+class Logger
+  def initialize(app)
+    @app = app
+  end
+
+  def call(env)
+    if env.request and env.request.params do
+      p env
+    end
+    @app.call(env)
+  end
+end
+
+Rails.application.config.middleware.use "Logger"
+
 Rails.application.config.middleware.use OmniAuth::Builder do
   oauth_definitions.each do |oauth_definition|
     verify_ssl = oauth_definition.fetch(:verify_ssl, true)
