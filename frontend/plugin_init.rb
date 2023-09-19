@@ -28,7 +28,7 @@ class Logger
   end
 end
 
-Rails.application.config.middleware.use "Logger"
+Rails.application.config.middleware.use Logger
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   oauth_definitions.each do |oauth_definition|
