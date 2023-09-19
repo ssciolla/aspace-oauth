@@ -21,9 +21,7 @@ class Logger
   end
 
   def call(env)
-    if env.request&.params
-      p env
-    end
+    p env
     @app.call(env)
   end
 end
