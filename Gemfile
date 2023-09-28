@@ -12,3 +12,8 @@ gem 'addressable',   '~> 2.8'
 
 # Pinning this resolves undefined method `[]' for #<OpenSSL::ASN1::Sequence:0x4bb0df3c>
 gem "json-jwt", "1.13.0"
+
+group :test do
+  gem 'rspec'
+  gem 'rspec-core'
+end
