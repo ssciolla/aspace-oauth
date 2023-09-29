@@ -1,0 +1,6 @@
+services:
+  test:
+    platform: linux/amd64
+    build: .
+    volumes:
+      - .:/app
