@@ -8,10 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Ruby 2.
+      - name: Set up Ruby 2
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '2.5.9'
-          bundler-cache: true
+          rubygems: '3.2.3'
+          bundler: '2.3.26'
+      - name: Install gems
+        run: bundle config set --local with test && bundle install
       - name: Run tests
         run: bundle exec rspec
