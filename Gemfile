@@ -14,6 +14,7 @@ gem 'addressable',   '~> 2.8'
 gem "json-jwt", "1.13.0"
 
 group :test do
-  gem 'rspec'
-  gem 'rspec-core'
+  gem "json"
+  gem "rspec"
+  gem "rspec-core"
 end
