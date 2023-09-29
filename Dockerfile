@@ -4,11 +4,7 @@ ARG UNAME=app
 ARG UID=1000
 ARG GID=1000
 
-LABEL maintainer="uniqname@umich.edu"
-
-## Install Vim (optional)
-#RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
-#  vim-tiny
+LABEL maintainer="ssciolla@umich.edu"
 
 RUN gem update --system 3.2.3
 
@@ -22,8 +18,8 @@ ENV BUNDLE_PATH /gems
 
 WORKDIR /app
 
-##For a production build copy the app files and run bundle install
 COPY --chown=${UID}:${GID} . /app
+
 RUN bundle install
 
 CMD ["tail", "-f", "/dev/null"]
