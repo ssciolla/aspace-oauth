@@ -6,6 +6,8 @@ jobs:
   # Run tests
   test:
     runs-on: ubuntu-latest
+    env:
+      - BUNDLE_WITH: test
     steps:
       - uses: actions/checkout@v3
       - name: Set up Ruby 2
@@ -14,7 +16,6 @@ jobs:
           ruby-version: '2.5.9'
           rubygems: '3.2.3'
           bundler: '2.3.26'
-      - name: Install gems
-        run: bundle config set --local with test && bundle install
+          bundler-cache: true
       - name: Run tests
         run: bundle exec rspec
