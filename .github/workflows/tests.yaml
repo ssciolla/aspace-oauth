@@ -1,0 +1,17 @@
+name: Run Tests
+
+on: push
+
+jobs:
+  # Run tests
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby 2.
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.5.9'
+          bundler-cache: true
+      - name: Run tests
+        run: bundle exec rspec
